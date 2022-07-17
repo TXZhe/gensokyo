@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.3.0, mkdocs-material-8.3.9" name="generator"/>
+<title>Flink - obsidian-mkdocs template</title>
+<link href="../../../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="pink" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#flink">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="obsidian-mkdocs template" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            obsidian-mkdocs template
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Flink
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="pink" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="blue" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="pink" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="obsidian-mkdocs template" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    obsidian-mkdocs template
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../..">
+        Obsidian Notes
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Features" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Features/LaTeX%20Math%20Support/">
+        LaTeX Math Support
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Features/Mermaid%20Diagrams/">
+        Mermaid diagrams
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Features/Text%20Formatting/">
+        Text Formatting
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          IT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IT" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          IT
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1">
+          00 Algorithm
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algorithm" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algorithm
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" id="__nav_3_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1">
+          00 Algo
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algo" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algo
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/00_Algo/00_%E6%A8%A1%E6%8B%9F/">
+        模拟
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/00_Algo/01_%E6%A0%91/">
+        二叉树
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/00_Algo/02_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        区间DP
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/00_Algo/03_%E6%8E%92%E5%BA%8F/">
+        TimSort
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_2" id="__nav_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_2">
+          01 OI
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 OI" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 OI
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/01_OI/00_%E5%88%B7%E9%A2%98%E6%B1%87%E6%80%BB/">
+        刷题汇总
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/01_OI/2022-04-05/">
+        [NOIP2006 普及组] 数列
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/01_OI/2022-04-08/">
+        Hz吐泡泡
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../00_Algorithm/01_OI/2022-04-10/">
+        算式
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2">
+          01 Develop
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Develop" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Develop
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" id="__nav_3_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1">
+          01 Language
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Language" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_1">
+<span class="md-nav__icon md-icon"></span>
+          01 Language
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Language/03_Scala/">
+        Scala
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1_2" id="__nav_3_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1_2">
+          01 Java
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Java" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Java
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Language/01_Java/01_Java%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+        Java集合类
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" id="__nav_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2">
+          02 Component
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Component" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+          02 Component
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Flink
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Flink
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+    1 应用场景
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+    2 相较于其他流式处理引擎
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+    3 核心特性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+    4 集群架构
+  </a>
+<nav aria-label="4 集群架构" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jobmanager">
+    JobManager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#taskmanager">
+    TaskManager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jobgraph">
+    JobGraph
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5">
+    5. 分布式流处理模型
+  </a>
+<nav aria-label="5. 分布式流处理模型" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dataflow">
+    DataFlow模型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#datastream-api">
+    DataStream API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#watermark">
+    Watermark
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#window">
+    Window
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    图的转换过程
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#new-source-api">
+    New Source API （流批一体）
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6">
+    6. 有状态计算
+  </a>
+<nav aria-label="6. 有状态计算" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    状态分类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#checkpoint">
+    CheckPoint
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#savepoint">
+    SavePoint
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-fink-table-sql">
+    7. Fink Table &amp; SQL
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2" id="__nav_3_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2">
+          00 Kafka
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Kafka" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          00 Kafka
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00_Kafka/00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+        Kafka基本概念
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2_2" id="__nav_3_2_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2_2">
+          01 broker
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 broker" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_2_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          01 broker
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00_Kafka/01_broker/00_%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/">
+        1 日志段
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00_Kafka/01_broker/01_%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9D%97/">
+        01 索引模块
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_3" id="__nav_3_2_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_3">
+          02 Spring
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Spring" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_3">
+<span class="md-nav__icon md-icon"></span>
+          02 Spring
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../02_Spring/00_spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+        Spring事务管理
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3">
+          99 Attachment
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="99 Attachment" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+          99 Attachment
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../99_Attachment/00_%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/">
+        题目名称
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4">
+          Excalidraw
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Excalidraw" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+          Excalidraw
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Excalidraw/2022-04-10/">
+        2022 04 10
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Excalidraw/2022-04-12-jobgraph/">
+        2022 04 12 jobgraph
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Excalidraw/2022-05-08-spring_transactional_overview/">
+        2022 05 08 spring transactional overview
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Excalidraw/tim-sort-merge-space-overhead/">
+        Tim sort merge space overhead
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          Topic 1
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Topic 1" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Topic 1
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Topic%201/Note%201/">
+        Note 1
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Topic%201/Note%202/">
+        Note 2
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+    1 应用场景
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+    2 相较于其他流式处理引擎
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+    3 核心特性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+    4 集群架构
+  </a>
+<nav aria-label="4 集群架构" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jobmanager">
+    JobManager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#taskmanager">
+    TaskManager
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client">
+    Client
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#jobgraph">
+    JobGraph
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5">
+    5. 分布式流处理模型
+  </a>
+<nav aria-label="5. 分布式流处理模型" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dataflow">
+    DataFlow模型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#datastream-api">
+    DataStream API
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#watermark">
+    Watermark
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#window">
+    Window
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    图的转换过程
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#new-source-api">
+    New Source API （流批一体）
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6">
+    6. 有状态计算
+  </a>
+<nav aria-label="6. 有状态计算" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    状态分类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#checkpoint">
+    CheckPoint
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#savepoint">
+    SavePoint
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-fink-table-sql">
+    7. Fink Table &amp; SQL
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="flink">Flink<a class="headerlink" href="#flink" title="Permanent link">¶</a></h1>
+<h2 id="1">1 应用场景<a class="headerlink" href="#1" title="Permanent link">¶</a></h2>
+<p>批量计算、流式计算、交互计算、图计算</p>
+<p>实时报表、实时监控、流式数据分析、实时数仓</p>
+<h2 id="2">2 相较于其他流式处理引擎<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
+<p>数据exactly once；吞吐量大每秒千万级；延迟低毫秒级；易用性有很多API</p>
+<h2 id="3">3 核心特性<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>统一的数据处理组件栈（batch, stream, graph, ML）</p>
+</li>
+<li>
+<p>时间概念</p>
+<ul>
+<li>事件时间（Event Time）真正数据产生时间；</li>
+<li>接入时间（Ingestion Time）数据通过中间件到达flink，在source operator 里产生；</li>
+<li>处理时间（Processing Time）算子处理的时间。</li>
+</ul>
+</li>
+<li>
+<p>基于分布式轻量级快照（Snapshot）实现容错，check point保证数据不会丢或重复</p>
+</li>
+<li>
+<p>支持有状态计算</p>
+<ul>
+<li>kv存状态</li>
+<li>有back end支持大数据量的状态持久化</li>
+</ul>
+</li>
+<li>
+<p>高度灵活的窗口计算</p>
+</li>
+<li>
+<p>带反压的连续流模型</p>
+<ul>
+<li>Flow Control，Sink算子传递控制信息到Source，控制处理速率。</li>
+</ul>
+</li>
+<li>
+<p>基于JVM实现了自己独立的内存管理</p>
+<ul>
+<li>可超出主内存大小，对对象二进制序列化存储，类似于C对内存的管理。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4">4 集群架构<a class="headerlink" href="#4" title="Permanent link">¶</a></h2>
+<p>job-worker结构
+* JobManager：管理节点，job管理与Checkpoint协调
+* TaskManager：计算资源的提供，每个实例部署在单独的机器上
+* Client：解析JobGraph提交给JobManager，监控job执行状态。
+Client -&gt; JobManager(Job) -&gt; TaskManager(Task)</p>
+<h3 id="jobmanager">JobManager<a class="headerlink" href="#jobmanager" title="Permanent link">¶</a></h3>
+<ul>
+<li>CheckPoint Coordinator</li>
+<li>JobGraph(逻辑图) -&gt; Excution Graph(物理图)</li>
+<li>Task部署</li>
+<li>RPC(Akka ? Actor system ?)</li>
+<li>Job Dispatch</li>
+<li>集群资源管理，根据集群部署模式不同有不同的实现</li>
+<li>TaskManager注册与管理</li>
+</ul>
+<h3 id="taskmanager">TaskManager<a class="headerlink" href="#taskmanager" title="Permanent link">¶</a></h3>
+<ul>
+<li>Task Excution (Task slot类似于线程池)</li>
+<li>Shuffle Env</li>
+<li>RPC</li>
+<li>Network Manager（TaskManager之间通信Netty）</li>
+<li>内存管理</li>
+<li>Slot提供给JobManager</li>
+</ul>
+<h3 id="client">Client<a class="headerlink" href="#client" title="Permanent link">¶</a></h3>
+<p>解析用户提交的jar，生成JobGraph对象（Code -&gt; Dag有向无环图）</p>
+<h3 id="jobgraph">JobGraph<a class="headerlink" href="#jobgraph" title="Permanent link">¶</a></h3>
+<ul>
+<li>通过有向无环图（Dag）表达用户的程序</li>
+<li>不同接口程序的抽象表达</li>
+<li>客户端和集群之间job描述的载体</li>
+<li><img alt="2022-04-12-jobgraph" src="../../../Excalidraw/2022-04-12-jobgraph/"/></li>
+</ul>
+<h2 id="5">5. 分布式流处理模型<a class="headerlink" href="#5" title="Permanent link">¶</a></h2>
+<p>如何兼顾数据一致性、大规模数据处理、无界乱序处理</p>
+<h3 id="dataflow">DataFlow模型<a class="headerlink" href="#dataflow" title="Permanent link">¶</a></h3>
+<p>1、数据源（Source）；
+* 打通外部输入，跟中间件交互（MQ）
+* 不同的数据源可以按照并行度分成不同的算子</p>
+<p>2、转换操作（Operation）；filter transform connect转换成结果</p>
+<p>3、数据输出（Sink）。</p>
+<p>数据从上一个Operation节点直接push到下一个Operation节点。
+节点可以运行在不同的Task线程中，数据在Operation间传递。
+数据有shuffle过程，但是是推不是MR的拉。</p>
+<h3 id="datastream-api">DataStream API<a class="headerlink" href="#datastream-api" title="Permanent link">¶</a></h3>
+<p>SQL -&gt; Table API -&gt; DataStream / DataSet API -&gt; Stateful Stream Processing</p>
+<p>程序结构：</p>
+<ol>
+<li>设置运行环境</li>
+<li>配置数据源读取数据</li>
+<li>进行一系列转换</li>
+<li>配置数据汇写出</li>
+<li>提交执行</li>
+</ol>
+<h3 id="watermark">Watermark<a class="headerlink" href="#watermark" title="Permanent link">¶</a></h3>
+<p>用于标记EventTime前进的过程；跟随DataStream的EventTime变动，自身携带timestamp；用于表明较早的事件可能已经到达；本身也是特殊的事件。</p>
+<p>数据流顺序（Sorted）的时候可以得到完美的Watermark；</p>
+<p>数据流无序的时候通常认为Watermark有一定的无序性：</p>
+<p>Watermark = EventTime - maxOutOfOrderness （有新的最大时间戳出现时更新）</p>
+<p>LateEvent：迟到事件，时间戳小于当前的WaterMark。后续窗口计算可能会丢掉。</p>
+<p>Watermark产生后会随数据流下发，到算子里时会更新算子里的时间。</p>
+<p>当EventTime增加时，Watermark跟新（有周期）；当Watermark大于window右边窗口时，执行窗口计算。</p>
+<p>WM产生：</p>
+<ul>
+<li>Periodic：根据EventTime产生；</li>
+<li>Punctuated：根据特定事件产生。</li>
+</ul>
+<h3 id="window">Window<a class="headerlink" href="#window" title="Permanent link">¶</a></h3>
+<p><img alt="fink_window_assigner.jpg" src="../../../99_Attachment/fink_window_assigner.jpg"/></p>
+<ul>
+<li>Window Assigner<ul>
+<li>将数据流中的元素分配到对应窗口中</li>
+</ul>
+</li>
+<li>Window Funtion<ul>
+<li>满足窗口触发条件后由Window Funtion进行处理</li>
+<li>增量计算（Aggregate，Reduce，Fold）：sum，min，max</li>
+<li>全量计算（窗口内全部一起算）：process<ul>
+<li>SideOutupt：流切分，标签化后输出output接口，getSideOutPut(sideOutPutTag)</li>
+</ul>
+</li>
+<li>结果体现在状态上</li>
+<li>Trigger将其结果输出</li>
+</ul>
+</li>
+<li>Window<ul>
+<li>TIme<ul>
+<li>Sliding 滑动窗口<ul>
+<li>窗口以固定步长（Slide）向前滑动，长度（Window Size）固定</li>
+<li>Slide &lt; Size 数据可以被重复计算</li>
+<li>Slide &gt; Size 数据可能不在任何一个窗口内</li>
+</ul>
+</li>
+<li>Tumbling 滚动窗口<ul>
+<li>窗口之间不重叠且长度是固定的</li>
+<li>特殊的滑动窗口 Slide = Size</li>
+</ul>
+</li>
+<li>Session 会话窗口<ul>
+<li>当一个窗口在大于Session gap的时间内没有接到新的数据，窗口关闭</li>
+<li>Size可变</li>
+</ul>
+</li>
+<li>Global 全局窗口<ul>
+<li>有所有的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Count</li>
+</ul>
+</li>
+<li>Window Trigger<ul>
+<li>何时启动 Window Function 以及将窗口内的数据清理<ul>
+<li>触发一次：Processing Time / Water mark 大于窗口结束时间触发；</li>
+<li>触发多次：固定时间间隔 / Count数量 / 和上次触发的元素Delta计算 / Puring别人触发完后清理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Window Evictor<ul>
+<li>数据清除器（可选组件） Count / Time / Delta</li>
+</ul>
+</li>
+</ul>
+<p><img alt="window_trigger.png" src="../../../99_Attachment/window_trigger.png"/></p>
+<p><img alt="window_trigger_con.png" src="../../../99_Attachment/window_trigger_con.png"/></p>
+<h3 id="_1">图的转换过程<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>pipline -&gt; stream图 -&gt; job图，job作业提交后转换成excute图。</p>
+<h3 id="new-source-api">New Source API （流批一体）<a class="headerlink" href="#new-source-api" title="Permanent link">¶</a></h3>
+<p>Bounded File Source</p>
+<ul>
+<li>每个 Split 是一个文件或文件的一部分；</li>
+<li>SplitEnumerator 列举 除指定文件夹下的全部文件，并逐个发给 reader；</li>
+<li>SourceReader 接收到 splits 后根据 inputFormat 读取数据；</li>
+<li>SourceReader 接收到 NoMoreSplits 消息是，会完成并停止。</li>
+</ul>
+<p>Unbounded Streaming File Source</p>
+<ul>
+<li>SplitEnumerator 不会发送 NoMoreSplits 消息；</li>
+<li>而是周期性的读取 URI/Path 的地址，获取新文件，进而转化为 Splits 发送给 reader。</li>
+</ul>
+<h2 id="6">6. 有状态计算<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<p>无状态计算：计算和存储分离</p>
+<p>有状态计算：计算的中间结果保存在本地</p>
+<p><img alt="cal_state.png" src="../../../99_Attachment/cal_state.png"/></p>
+<p>问题：</p>
+<ul>
+<li>端到端数据一致性如何保证？</li>
+<li>状态数据如何恢复？</li>
+<li>状态后端存储如何选择</li>
+<li>如何snapshot</li>
+<li>状态如何存储更新</li>
+</ul>
+<h3 id="_2">状态分类<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p><img alt="state.jpg" src="../../../99_Attachment/state.jpg"/></p>
+<h3 id="checkpoint">CheckPoint<a class="headerlink" href="#checkpoint" title="Permanent link">¶</a></h3>
+<p>将算子中的状态数据异步持久化到文件系统中。<em>Chandy-Lamport算法？</em></p>
+<p>JobManager: CheckPoint Coordinator: 触发 Source 节点的 checkpoint（1. 将自己的状态持久化；2. 向下游广播 barrier；3. 完成后通知 coordinator 备份的地址）</p>
+<p>CheckPoint Barrier 将 DataStream 切成多个批次，多个 DataStream 对齐。Operator 对齐 barrier 后状态持久化。</p>
+<p>Sink 接收到 barrier 后通知 coordinator，checkpoint 过程结束，将元数据持久化。</p>
+<h3 id="savepoint">SavePoint<a class="headerlink" href="#savepoint" title="Permanent link">¶</a></h3>
+<p>用户主动控制，作业停止前备份，永久存储（CheckPoint停止后会被删除）</p>
+<h2 id="7-fink-table-sql">7. Fink Table &amp; SQL<a class="headerlink" href="#7-fink-table-sql" title="Permanent link">¶</a></h2>
+<p>批流一体，一套SQL运行在流数据和批数据上。</p>
+<p>Calcite解析SQL</p>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Java集合类" class="md-footer__link md-footer__link--prev" href="../../01_Language/01_Java/01_Java%E5%B7%A5%E5%85%B7%E7%B1%BB/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Java集合类
+            </div>
+</div>
+</a>
+<a aria-label="Next: Kafka基本概念" class="md-footer__link md-footer__link--next" href="../00_Kafka/00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Kafka基本概念
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>

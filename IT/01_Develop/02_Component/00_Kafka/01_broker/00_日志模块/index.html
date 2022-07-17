@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.3.0, mkdocs-material-8.3.9" name="generator"/>
+<title>1 日志段 - obsidian-mkdocs template</title>
+<link href="../../../../../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../../../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="pink" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#1">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="obsidian-mkdocs template" class="md-header__button md-logo" data-md-component="logo" href="../../../../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            obsidian-mkdocs template
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              1 日志段
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="pink" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="blue" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="pink" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="obsidian-mkdocs template" class="md-nav__button md-logo" data-md-component="logo" href="../../../../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    obsidian-mkdocs template
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../..">
+        Obsidian Notes
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Features" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../Features/LaTeX%20Math%20Support/">
+        LaTeX Math Support
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../Features/Mermaid%20Diagrams/">
+        Mermaid diagrams
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../Features/Text%20Formatting/">
+        Text Formatting
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          IT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IT" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          IT
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1">
+          00 Algorithm
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algorithm" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algorithm
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" id="__nav_3_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1">
+          00 Algo
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algo" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algo
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/00_Algo/00_%E6%A8%A1%E6%8B%9F/">
+        模拟
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/00_Algo/01_%E6%A0%91/">
+        二叉树
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/00_Algo/02_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        区间DP
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/00_Algo/03_%E6%8E%92%E5%BA%8F/">
+        TimSort
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_2" id="__nav_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_2">
+          01 OI
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 OI" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 OI
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/01_OI/00_%E5%88%B7%E9%A2%98%E6%B1%87%E6%80%BB/">
+        刷题汇总
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/01_OI/2022-04-05/">
+        [NOIP2006 普及组] 数列
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/01_OI/2022-04-08/">
+        Hz吐泡泡
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../00_Algorithm/01_OI/2022-04-10/">
+        算式
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2">
+          01 Develop
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Develop" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Develop
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" id="__nav_3_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1">
+          01 Language
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Language" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_1">
+<span class="md-nav__icon md-icon"></span>
+          01 Language
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../01_Language/03_Scala/">
+        Scala
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1_2" id="__nav_3_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1_2">
+          01 Java
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Java" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Java
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../01_Language/01_Java/01_Java%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+        Java集合类
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" id="__nav_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2">
+          02 Component
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Component" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+          02 Component
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../01_Flink/">
+        Flink
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2" id="__nav_3_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2">
+          00 Kafka
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Kafka" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          00 Kafka
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+        Kafka基本概念
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2_2" id="__nav_3_2_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2_2">
+          01 broker
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 broker" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_2_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          01 broker
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          1 日志段
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        1 日志段
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    日志结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#append">
+    append 方法（写入）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#read">
+    read 方法 （读取）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recover">
+    recover 方法 （恢复日志段）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#truncateto">
+    truncateTo方法 （截断）
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01_%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9D%97/">
+        01 索引模块
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_3" id="__nav_3_2_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_3">
+          02 Spring
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Spring" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_3">
+<span class="md-nav__icon md-icon"></span>
+          02 Spring
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../02_Spring/00_spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+        Spring事务管理
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3">
+          99 Attachment
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="99 Attachment" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+          99 Attachment
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../99_Attachment/00_%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/">
+        题目名称
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4">
+          Excalidraw
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Excalidraw" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+          Excalidraw
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../Excalidraw/2022-04-10/">
+        2022 04 10
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../Excalidraw/2022-04-12-jobgraph/">
+        2022 04 12 jobgraph
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../Excalidraw/2022-05-08-spring_transactional_overview/">
+        2022 05 08 spring transactional overview
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../Excalidraw/tim-sort-merge-space-overhead/">
+        Tim sort merge space overhead
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          Topic 1
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Topic 1" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Topic 1
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../Topic%201/Note%201/">
+        Note 1
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../Topic%201/Note%202/">
+        Note 2
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    日志结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#append">
+    append 方法（写入）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#read">
+    read 方法 （读取）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recover">
+    recover 方法 （恢复日志段）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#truncateto">
+    truncateTo方法 （截断）
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="1">1 日志段<a class="headerlink" href="#1" title="Permanent link">¶</a></h1>
+<h2 id="_1">日志结构<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>日志 Log -&gt;{
+    日志段 Log Segement -&gt;{
+         消息日志文件 00000.log；
+         位移索引文件 00000.index；
+         时间戳索引文件 00000.timeindex；
+         已终止事务索引文件 00000.txnindex
+    }
+    ...
+}</p>
+<p>文件名为日志段的起始位移值，即该日志段所存第一条消息的位移值。</p>
+<p><em>每一个分区对应一个日志 Log，对应物理磁盘上的一个子目录。</em></p>
+<blockquote>
+<p>大面积日志段同时切分造成磁盘IO瞬间打满，可用 log.roll.jitter.ms 值大于 0 设置切分的扰动值</p>
+</blockquote>
+<p>日志段源码：scala/kafka/log/LogSegment.scala</p>
+<p>其中包含三个对象：</p>
+<ul>
+<li>LogSegment class;</li>
+<li>LogSegment object;</li>
+<li>LogFlushStats object。</li>
+</ul>
+<p>Scala同名的class（伴生类）和object（单例对象）叫伴生（Companion），类似于Java中的两个LogSegment和LogSegmentUtils类。</p>
+<p>每个日志段由两个核心构成：<em>日志</em>（实际的消息）和 <em>索引</em>（逻辑位移与物理文件中位置的映射）。每个日志段都有一个起始位移值 Base_Offest。小于等于段内位移，大于之前的所有位移。</p>
+<p>indexIntervalBytest 是Broker的 log.index.interval.bytes 参数，控制日志段对象新增索引项的频率。默认写入4KB的消息增加一个索引项。</p>
+<h2 id="append">append 方法（写入）<a class="headerlink" href="#append" title="Permanent link">¶</a></h2>
+<p>入参：
+* 最大位移，
+* 最大时间戳，
+* 最大时间戳对应消息位移，
+* 消息集合</p>
+<p>1、判断日志段是否为空 log.sizeInBytes，空的话需要记录写入消息集合的<em>最大时间戳</em>，并将其作为后面新增日志段倒计时的依据。</p>
+<p>2、ensureOffsetInrange 保证输入 <em>最大位移</em> 是合法的，即 largestOffest - baseOffset 介于 [0, Int.MAXVALUE]。越界会抛出异常，需要升级kafka，通常是由一个已知bug导致的。</p>
+<p>3、调用 FileRecords 的 append 方法，执行真正的写入。（将内存中的消息写入操作系统的页缓存中）。</p>
+<p>4、更新日志段的 <em>最大时间戳</em> 和 <em>最大时间戳对应位移值</em>，可以用于消息按时间清理。</p>
+<p>5、更新索引和写入字节数。</p>
+<h2 id="read">read 方法 （读取）<a class="headerlink" href="#read" title="Permanent link">¶</a></h2>
+<p>入参：
+* startOffest 读取日志段中大于等于startOffest位移的消息
+* maxSize 读取消息集合的最大bytes
+* maxPosition 能读到的最大文件位置
+* minOneMessage 如果消息集合大于maxSize，可以只返回第一条</p>
+<p>1、根据起始位移找到对应的物理文件位置。</p>
+<p>2、计算可读取的总字节数 min(maxSize, maxPosition - startPosition)</p>
+<p>3、调用 FileRecords 的 slice 方法，读出指定大小的消息集合。</p>
+<h2 id="recover">recover 方法 （恢复日志段）<a class="headerlink" href="#recover" title="Permanent link">¶</a></h2>
+<p>Broker启动时加载磁盘上所有日志段信息到内存中，创建相应的LogSegment对象。从log中重建index，修剪掉log和index结尾非法的字节，用batch导入？不是完整的batch删掉？。</p>
+<ol>
+<li>
+<p>清空所有索引文件</p>
+</li>
+<li>
+<p>遍历日志段中所有消息集合（batches）</p>
+<ol>
+<li>校验消息集合 （集合中的消息符合kafka定义的二进制格式；最后一条消息位移不能越界。）</li>
+<li>保存最大时间戳和所属消息位移</li>
+<li>更新索引</li>
+<li>更新消息总字节数</li>
+<li>更新事务Producer状态和Leader Epoch缓存</li>
+</ol>
+</li>
+<li>
+<p>执行消息日志和索引文件的截断</p>
+</li>
+</ol>
+<h2 id="truncateto">truncateTo方法 （截断）<a class="headerlink" href="#truncateto" title="Permanent link">¶</a></h2>
+<p>TODO：</p>
+<h1 id="2">2 日志<a class="headerlink" href="#2" title="Permanent link">¶</a></h1>
+<p><em>kafka核中核</em>，管理日志段</p>
+<p>日志源码：scala/kafka/log/UnifiedLog.scala</p>
+<p>包含对象：</p>
+<ul>
+<li>LogAppendInfo<ul>
+<li>C：保存一组带写入消息的元数据，第一条消息的位移，最后一条消息的位移等等</li>
+<li>O：伴生类的工厂类</li>
+</ul>
+</li>
+<li><em>UnifiedLog</em><ul>
+<li>C：Log的核中核</li>
+<li>O：工厂方法，常量和辅助方法</li>
+</ul>
+</li>
+<li>RollParams<ul>
+<li>C：定义用于控制日志段是否切分（Roll）的数据结构</li>
+<li>O：工厂方法</li>
+</ul>
+</li>
+<li>LogMeticNames：Log对象监控指标</li>
+<li>LogOffestSnapshot：封装分区所有位移元数据的容器类</li>
+<li>LogReadInfo：封装读取日志返回的数据及其元数据</li>
+<li>CompletedTxn：记录已完成事务的元数据，主要用于构建事务索引</li>
+</ul>
+<h2 id="unifiedlog-class-object">UnifiedLog Class &amp; Object<a class="headerlink" href="#unifiedlog-class-object" title="Permanent link">¶</a></h2>
+<h3 id="unifiedlog-object">UnifiedLog Object<a class="headerlink" href="#unifiedlog-object" title="Permanent link">¶</a></h3>
+<p>文件后缀</p>
+<p>.snapshot 为幂等型或事务型 Producer 所做的快照文件。</p>
+<p>.deleted 删除是异步的，.log改为deleted再删除。</p>
+<p>文件名固定 20 位长度，为 offset 前面补0。</p>
+<h3 id="unifiedlog-class">UnifiedLog Class<a class="headerlink" href="#unifiedlog-class" title="Permanent link">¶</a></h3>
+<p><em>localLog.dir？</em>：主题分区路径</p>
+<p>logStartOffest：日志的当前最早位移</p>
+<p><em>LeaderEpochFileCache？详细的epoch机制？</em><a href="../../00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#leader-epoch">00_kafka基本概念#Leader Epoch</a></p>
+<h3 id="log">Log 类初始化逻辑（旧版）<a class="headerlink" href="#log" title="Permanent link">¶</a></h3>
+<p><em>新版？</em></p>
+<ol>
+<li>创建分区日志路径</li>
+<li>初始化 Leader Epoch Cache<ol>
+<li>创建 Leader Epoch 检查点文件</li>
+<li>生成 Leader Epoch Cache 对象</li>
+</ol>
+</li>
+<li>加载所有日志段对象<ol>
+<li>执行 removeTempFilesAndCollectSwapFiles 逻辑</li>
+<li>源码开始清空已有日志段集合，并重新加载日志段文件</li>
+<li>处理第 1 不返回有效的 .swap 文件集合（用新的合并过的swap文件替代老的日字段）</li>
+<li>recoverLog 操作</li>
+</ol>
+</li>
+<li>更新 nextOffsetMetadata （下一条消息插入位移）和 logStartOffset（对外可见的最早位移）</li>
+<li>更新 Leader Epoch Cache，清除无效数据</li>
+</ol>
+<h2 id="log_1">Log 常见操作<a class="headerlink" href="#log_1" title="Permanent link">¶</a></h2>
+<h3 id="1_1">1. 高水位管理<a class="headerlink" href="#1_1" title="Permanent link">¶</a></h3>
+<pre><code class="language-Scala">
+@volatile private var highWatermarkMetadata: LogOffsetMetadata = LogOffsetMetadata(logStartOffset)
+</code></pre>
+<p>高水位值的初始值是 Log Start Offset 值</p>
+<h4 id="_2">更新：<a class="headerlink" href="#_2" title="Permanent link">¶</a></h4>
+<ul>
+<li>updateHighWatermark方法：主要用在 Follower 副本获取消息后更新高水位；</li>
+<li>maybeIncrementHighWatermark方法：主要用在 Leader 副本 HW 更新，只有在新HW比老的高，或者相等新HW在新的日志段，则更新HW。</li>
+</ul>
+<h3 id="2_1">2. 日志段管理<a class="headerlink" href="#2_1" title="Permanent link">¶</a></h3>
+<pre><code class="language-Scala">
+private val segments: ConcurrentNavigableMap[java.lang.Long, LogSegment] = new ConcurrentSkipListMap[java.lang.Long, LogSegment]
+</code></pre>
+<p><em>日志是日志段的容器</em></p>
+<p>ConcurrentSkipListMap</p>
+<ul>
+<li>线程安全</li>
+<li>将日志段的起始位移值作为 key，是有序的</li>
+</ul>
+<h4 id="_3">删除日志段<a class="headerlink" href="#_3" title="Permanent link">¶</a></h4>
+<p>根据留存策略不同有3个方法：</p>
+<ol>
+<li>deleteRetentionMsBreachedSegments</li>
+<li>deleteRetentionSizeBreachedSegments</li>
+<li>deletetLogStartOffsetBreachedSegments</li>
+</ol>
+<pre><code class="language-Scala">
+private def deleteOldSegments(predicate: (LogSegment, Option[LogSegment]) =&gt; Boolean, reason: String): Int = {
+    lock synchronized {
+      val deletable = deletableSegments(predicate)
+      if (deletable.nonEmpty)
+        info(s"Found deletable segments with base offsets [${deletable.map(_.baseOffset).mkString(",")}] due to $reason")
+      deleteSegments(deletable)
+    }
+  }
+</code></pre>
+<p>从具有最小位移的日志段开始遍历，直到：1、检测条件函数 predocate=false；2、Log包含HW；3、不包含任何消息。遍历到的日志段都删除。</p>
+<h3 id="3">3. 关键位移值管理<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<pre><code class="language-Scala">nextOffsetMetadata = LogOffsetMetadata(nextOffset, activeSegment.baseOffset, activeSegment.size)
+</code></pre>
+<h4 id="leo">更新LEO对象时机<a class="headerlink" href="#leo" title="Permanent link">¶</a></h4>
+<ol>
+<li>Log对象初始化</li>
+<li>写入消息</li>
+<li>日志切分（Log Roll），切换了 Active Segement</li>
+<li>日志截断</li>
+</ol>
+<h3 id="4">4. 读写操作<a class="headerlink" href="#4" title="Permanent link">¶</a></h3>
+<h4 id="_4">写<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<p>写Leader副本：appendAsLeader</p>
+<p>Follower副本同步：appendAsFollower</p>
+<p>底层调用 append</p>
+<p><img alt="write_log.webp" src="../../../../../99_Attachment/write_log.webp"/></p>
+<h4 id="_5">读<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
+<p>满足以下条件之一将被视为消息越界，即你要读取的消息不在该Log对象中： 
+1. 要读取的消息位移超过了LEO值
+2. 没找到对应的日志段对象 
+3. 要读取的消息在Log Start Offset之下，同样是对外不可见的消息</p>
+<p>查看一下读取隔离级别设置。 
++ 普通消费者能够看到[Log Start Offset, 高水位值)之间的消息 
++ 事务型消费者只能看到[Log Start Offset, Log Stable Offset]之间的消息。Log Stable Offset(LSO)是比LEO值小的位移值，为Kafka事务使用
++ Follower副本消费者能够看到[Log Start Offset，LEO)之间的消息</p>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Kafka基本概念" class="md-footer__link md-footer__link--prev" href="../../00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Kafka基本概念
+            </div>
+</div>
+</a>
+<a aria-label="Next: 01 索引模块" class="md-footer__link md-footer__link--next" href="../01_%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9D%97/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              01 索引模块
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../../../..", "features": [], "search": "../../../../../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../../../../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../../../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>

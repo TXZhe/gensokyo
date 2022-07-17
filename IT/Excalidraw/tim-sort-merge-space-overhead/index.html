@@ -1,0 +1,1415 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.3.0, mkdocs-material-8.3.9" name="generator"/>
+<title>Tim sort merge space overhead - obsidian-mkdocs template</title>
+<link href="../../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="pink" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#text-elements">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="obsidian-mkdocs template" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            obsidian-mkdocs template
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Tim sort merge space overhead
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="pink" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="blue" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="pink" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="obsidian-mkdocs template" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="obsidian-mkdocs template">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    obsidian-mkdocs template
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Obsidian Notes
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Features" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Features/LaTeX%20Math%20Support/">
+        LaTeX Math Support
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Features/Mermaid%20Diagrams/">
+        Mermaid diagrams
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Features/Text%20Formatting/">
+        Text Formatting
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          IT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IT" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          IT
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1">
+          00 Algorithm
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algorithm" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algorithm
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" id="__nav_3_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1">
+          00 Algo
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Algo" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+          00 Algo
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/00_Algo/00_%E6%A8%A1%E6%8B%9F/">
+        模拟
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/00_Algo/01_%E6%A0%91/">
+        二叉树
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/00_Algo/02_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        区间DP
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/00_Algo/03_%E6%8E%92%E5%BA%8F/">
+        TimSort
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_2" id="__nav_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_2">
+          01 OI
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 OI" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 OI
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/01_OI/00_%E5%88%B7%E9%A2%98%E6%B1%87%E6%80%BB/">
+        刷题汇总
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/01_OI/2022-04-05/">
+        [NOIP2006 普及组] 数列
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/01_OI/2022-04-08/">
+        Hz吐泡泡
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../00_Algorithm/01_OI/2022-04-10/">
+        算式
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2">
+          01 Develop
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Develop" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Develop
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" id="__nav_3_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1">
+          01 Language
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Language" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_1">
+<span class="md-nav__icon md-icon"></span>
+          01 Language
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/01_Language/03_Scala/">
+        Scala
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1_2" id="__nav_3_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_1_2">
+          01 Java
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 Java" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+          01 Java
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/01_Language/01_Java/01_Java%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+        Java集合类
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" id="__nav_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2">
+          02 Component
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Component" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+          02 Component
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/02_Component/01_Flink/">
+        Flink
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2" id="__nav_3_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2">
+          00 Kafka
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="00 Kafka" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          00 Kafka
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/02_Component/00_Kafka/00_kafka%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+        Kafka基本概念
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_2_2" id="__nav_3_2_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_2_2">
+          01 broker
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="01 broker" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_2_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          01 broker
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/02_Component/00_Kafka/01_broker/00_%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/">
+        1 日志段
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/02_Component/00_Kafka/01_broker/01_%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9D%97/">
+        01 索引模块
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2_3" id="__nav_3_2_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2_2_3">
+          02 Spring
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="02 Spring" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_2_2_3">
+<span class="md-nav__icon md-icon"></span>
+          02 Spring
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../01_Develop/02_Component/02_Spring/00_spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+        Spring事务管理
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3">
+          99 Attachment
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="99 Attachment" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+          99 Attachment
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../99_Attachment/00_%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/">
+        题目名称
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4">
+          Excalidraw
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Excalidraw" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+          Excalidraw
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2022-04-10/">
+        2022 04 10
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2022-04-12-jobgraph/">
+        2022 04 12 jobgraph
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2022-05-08-spring_transactional_overview/">
+        2022 05 08 spring transactional overview
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Tim sort merge space overhead
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          Topic 1
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Topic 1" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Topic 1
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Topic%201/Note%201/">
+        Note 1
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Topic%201/Note%202/">
+        Note 2
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<p><mark>⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠</mark></p>
+<h1 id="text-elements">Text Elements<a class="headerlink" href="#text-elements" title="Permanent link">¶</a></h1>
+<p>X ^JX1YoKry</p>
+<p>Y ^hGFsm7I9</p>
+<p>x_y1 ^d3HVTt6W</p>
+<p>y_xn ^6kwSFlMA</p>
+<p>copy ^GqM9Obo9</p>
+<p>开始归并 ^o0FgDLal</p>
+<p>%%</p>
+<h1 id="drawing">Drawing<a class="headerlink" href="#drawing" title="Permanent link">¶</a></h1>
+<pre><code class="language-json">{
+    "type": "excalidraw",
+    "version": 2,
+    "source": "https://excalidraw.com",
+    "elements": [
+        {
+            "type": "rectangle",
+            "version": 191,
+            "versionNonce": 1472661010,
+            "isDeleted": false,
+            "id": "hYGFDei14xe1zbj7QkoGI",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "angle": 0,
+            "x": -215.33706665039062,
+            "y": -114.52875518798828,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "width": 164.75494384765625,
+            "height": 42.065093994140625,
+            "seed": 1144387598,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "boundElements": [
+                {
+                    "id": "p_AlNyhiP9B9i7sV2yfbk",
+                    "type": "arrow"
+                }
+            ],
+            "updated": 1654348492072,
+            "link": null,
+            "locked": false
+        },
+        {
+            "type": "rectangle",
+            "version": 98,
+            "versionNonce": 722148818,
+            "isDeleted": false,
+            "id": "afgJGM1qr_fnntKnN29pa",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "angle": 0,
+            "x": 23.907989501953125,
+            "y": -116.2814712524414,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "width": 200.68560791015625,
+            "height": 44.694122314453125,
+            "seed": 1669320786,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "boundElements": [
+                {
+                    "id": "p_AlNyhiP9B9i7sV2yfbk",
+                    "type": "arrow"
+                },
+                {
+                    "id": "dtU_anql9N_4AmSGuRPKC",
+                    "type": "arrow"
+                }
+            ],
+            "updated": 1654348548955,
+            "link": null,
+            "locked": false
+        },
+        {
+            "id": "JX1YoKry",
+            "type": "text",
+            "x": -160.00343322753906,
+            "y": -152.31158065795898,
+            "width": 13,
+            "height": 25,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 1639764558,
+            "version": 5,
+            "versionNonce": 1591465422,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391984,
+            "link": null,
+            "locked": false,
+            "text": "X",
+            "rawText": "X",
+            "fontSize": 20,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 18,
+            "containerId": null,
+            "originalText": "X"
+        },
+        {
+            "id": "hGFsm7I9",
+            "type": "text",
+            "x": 117.80140686035156,
+            "y": -151.43523788452148,
+            "width": 11,
+            "height": 25,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 1307252430,
+            "version": 7,
+            "versionNonce": 1842329106,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391984,
+            "link": null,
+            "locked": false,
+            "text": "Y",
+            "rawText": "Y",
+            "fontSize": 20,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 18,
+            "containerId": null,
+            "originalText": "Y"
+        },
+        {
+            "id": "eU30SZzPt5OCSA_n2RS1U",
+            "type": "freedraw",
+            "x": -181.03599548339844,
+            "y": -114.39184188842773,
+            "width": 1.75274658203125,
+            "height": 43.81779479980469,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "round",
+            "seed": 447324558,
+            "version": 39,
+            "versionNonce": 1622928398,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391985,
+            "link": null,
+            "locked": false,
+            "points": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0.43817138671875
+                ],
+                [
+                    0,
+                    2.190887451171875
+                ],
+                [
+                    0.876373291015625,
+                    7.0108489990234375
+                ],
+                [
+                    0.876373291015625,
+                    9.639907836914062
+                ],
+                [
+                    1.314544677734375,
+                    12.26898193359375
+                ],
+                [
+                    1.314544677734375,
+                    12.7071533203125
+                ],
+                [
+                    1.314544677734375,
+                    13.583511352539062
+                ],
+                [
+                    1.314544677734375,
+                    14.459869384765625
+                ],
+                [
+                    1.314544677734375,
+                    15.336227416992188
+                ],
+                [
+                    1.314544677734375,
+                    18.403472900390625
+                ],
+                [
+                    1.75274658203125,
+                    21.470718383789062
+                ],
+                [
+                    1.75274658203125,
+                    25.852493286132812
+                ],
+                [
+                    1.75274658203125,
+                    28.04339599609375
+                ],
+                [
+                    1.75274658203125,
+                    28.91973876953125
+                ],
+                [
+                    1.75274658203125,
+                    30.234283447265625
+                ],
+                [
+                    1.75274658203125,
+                    30.672454833984375
+                ],
+                [
+                    1.75274658203125,
+                    31.548812866210938
+                ],
+                [
+                    1.75274658203125,
+                    31.986984252929688
+                ],
+                [
+                    1.75274658203125,
+                    32.4251708984375
+                ],
+                [
+                    1.75274658203125,
+                    32.86334228515625
+                ],
+                [
+                    1.75274658203125,
+                    33.30152893066406
+                ],
+                [
+                    1.75274658203125,
+                    33.73970031738281
+                ],
+                [
+                    1.75274658203125,
+                    34.177886962890625
+                ],
+                [
+                    1.75274658203125,
+                    35.49241638183594
+                ],
+                [
+                    1.75274658203125,
+                    37.24513244628906
+                ],
+                [
+                    1.75274658203125,
+                    38.99784851074219
+                ],
+                [
+                    1.75274658203125,
+                    39.87419128417969
+                ],
+                [
+                    1.75274658203125,
+                    40.75056457519531
+                ],
+                [
+                    1.75274658203125,
+                    41.18873596191406
+                ],
+                [
+                    1.75274658203125,
+                    41.62690734863281
+                ],
+                [
+                    1.75274658203125,
+                    42.06507873535156
+                ],
+                [
+                    1.75274658203125,
+                    42.94145202636719
+                ],
+                [
+                    1.75274658203125,
+                    43.37962341308594
+                ],
+                [
+                    1.75274658203125,
+                    43.81779479980469
+                ],
+                [
+                    1.75274658203125,
+                    43.81779479980469
+                ]
+            ],
+            "pressures": [],
+            "simulatePressure": true,
+            "lastCommittedPoint": [
+                1.75274658203125,
+                43.81779479980469
+            ]
+        },
+        {
+            "id": "4jYh4Fyf8WfYW8vbU8M3K",
+            "type": "freedraw",
+            "x": 75.21656799316406,
+            "y": -116.58274459838867,
+            "width": 2.19085693359375,
+            "height": 55.64862060546875,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "round",
+            "seed": 2069542354,
+            "version": 48,
+            "versionNonce": 173220818,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391985,
+            "link": null,
+            "locked": false,
+            "points": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0.4381866455078125
+                ],
+                [
+                    0,
+                    2.1909027099609375
+                ],
+                [
+                    0,
+                    4.8199615478515625
+                ],
+                [
+                    0,
+                    7.44903564453125
+                ],
+                [
+                    0,
+                    8.325393676757812
+                ],
+                [
+                    0,
+                    9.639923095703125
+                ],
+                [
+                    0,
+                    10.078094482421875
+                ],
+                [
+                    0,
+                    10.516281127929688
+                ],
+                [
+                    0,
+                    11.830810546875
+                ],
+                [
+                    0,
+                    12.707168579101562
+                ],
+                [
+                    0.87640380859375,
+                    16.212600708007812
+                ],
+                [
+                    0.87640380859375,
+                    18.403488159179688
+                ],
+                [
+                    1.31451416015625,
+                    22.785263061523438
+                ],
+                [
+                    1.31451416015625,
+                    24.537979125976562
+                ],
+                [
+                    1.31451416015625,
+                    24.976150512695312
+                ],
+                [
+                    1.31451416015625,
+                    26.290695190429688
+                ],
+                [
+                    1.31451416015625,
+                    27.167037963867188
+                ],
+                [
+                    1.31451416015625,
+                    27.605224609375
+                ],
+                [
+                    1.31451416015625,
+                    28.04339599609375
+                ],
+                [
+                    1.31451416015625,
+                    28.919754028320312
+                ],
+                [
+                    1.31451416015625,
+                    29.357940673828125
+                ],
+                [
+                    1.31451416015625,
+                    30.234298706054688
+                ],
+                [
+                    1.31451416015625,
+                    31.548828125
+                ],
+                [
+                    1.752685546875,
+                    38.99786376953125
+                ],
+                [
+                    2.19085693359375,
+                    47.3232421875
+                ],
+                [
+                    2.19085693359375,
+                    51.266845703125
+                ],
+                [
+                    2.19085693359375,
+                    53.457733154296875
+                ],
+                [
+                    2.19085693359375,
+                    53.895904541015625
+                ],
+                [
+                    2.19085693359375,
+                    54.334075927734375
+                ],
+                [
+                    2.19085693359375,
+                    54.772247314453125
+                ],
+                [
+                    2.19085693359375,
+                    55.21044921875
+                ],
+                [
+                    2.19085693359375,
+                    55.64862060546875
+                ],
+                [
+                    2.19085693359375,
+                    55.21044921875
+                ],
+                [
+                    2.19085693359375,
+                    54.772247314453125
+                ],
+                [
+                    2.19085693359375,
+                    53.895904541015625
+                ],
+                [
+                    2.19085693359375,
+                    53.457733154296875
+                ],
+                [
+                    2.19085693359375,
+                    52.58135986328125
+                ],
+                [
+                    2.19085693359375,
+                    51.70501708984375
+                ],
+                [
+                    2.19085693359375,
+                    51.266845703125
+                ],
+                [
+                    2.19085693359375,
+                    50.828643798828125
+                ],
+                [
+                    2.19085693359375,
+                    50.390472412109375
+                ],
+                [
+                    2.19085693359375,
+                    49.514129638671875
+                ],
+                [
+                    2.19085693359375,
+                    49.075958251953125
+                ],
+                [
+                    2.19085693359375,
+                    49.075958251953125
+                ]
+            ],
+            "pressures": [],
+            "simulatePressure": true,
+            "lastCommittedPoint": [
+                2.19085693359375,
+                49.075958251953125
+            ]
+        },
+        {
+            "id": "d3HVTt6W",
+            "type": "text",
+            "x": -179.8032989501953,
+            "y": -65.99052047729492,
+            "width": 44,
+            "height": 25,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 1395880466,
+            "version": 8,
+            "versionNonce": 1388264014,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391985,
+            "link": null,
+            "locked": false,
+            "text": "x_y1",
+            "rawText": "x_y1",
+            "fontSize": 20,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 18,
+            "containerId": null,
+            "originalText": "x_y1"
+        },
+        {
+            "id": "6kwSFlMA",
+            "type": "text",
+            "x": 60.31831359863281,
+            "y": -64.23777389526367,
+            "width": 47,
+            "height": 25,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 4719310,
+            "version": 50,
+            "versionNonce": 664983954,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348391985,
+            "link": null,
+            "locked": false,
+            "text": "y_xn",
+            "rawText": "y_xn",
+            "fontSize": 20,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 18,
+            "containerId": null,
+            "originalText": "y_xn"
+        },
+        {
+            "id": "tPE2AwLLElaphJo3s6Wok",
+            "type": "rectangle",
+            "x": -214.4193572998047,
+            "y": -114.83001327514648,
+            "width": 33.739715576171875,
+            "height": 41.18873596191406,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "#868e96",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 367609678,
+            "version": 39,
+            "versionNonce": 2134789070,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348411962,
+            "link": null,
+            "locked": false
+        },
+        {
+            "id": "dRpxb4cveJGG7aF730Rnp",
+            "type": "rectangle",
+            "x": 76.18482971191406,
+            "y": -116.58274459838867,
+            "width": 148.98052978515625,
+            "height": 45.570526123046875,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "#868e96",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 2036310542,
+            "version": 66,
+            "versionNonce": 1778852622,
+            "isDeleted": false,
+            "boundElements": [
+                {
+                    "id": "dtU_anql9N_4AmSGuRPKC",
+                    "type": "arrow"
+                }
+            ],
+            "updated": 1654348567269,
+            "link": null,
+            "locked": false
+        },
+        {
+            "id": "FJsssIgjItA4j7Zv7rYPN",
+            "type": "rectangle",
+            "x": -65.80216979980469,
+            "y": -15.957988739013672,
+            "width": 47.7613525390625,
+            "height": 44.694183349609375,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 915503182,
+            "version": 94,
+            "versionNonce": 231691790,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348436848,
+            "link": null,
+            "locked": false
+        },
+        {
+            "id": "_OxO3xxN3dulUJOP4Ubi0",
+            "type": "arrow",
+            "x": 39.36054992675781,
+            "y": -79.93197250366211,
+            "width": 69.23211669921875,
+            "height": 69.67030334472656,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "round",
+            "seed": 500524110,
+            "version": 44,
+            "versionNonce": 1430417490,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348441296,
+            "link": null,
+            "locked": false,
+            "points": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    -69.23211669921875,
+                    69.67030334472656
+                ]
+            ],
+            "lastCommittedPoint": null,
+            "startBinding": null,
+            "endBinding": null,
+            "startArrowhead": null,
+            "endArrowhead": "arrow"
+        },
+        {
+            "id": "GqM9Obo9",
+            "type": "text",
+            "x": 0.3627471923828125,
+            "y": -45.24323654174805,
+            "width": 33,
+            "height": 20,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 1609864722,
+            "version": 34,
+            "versionNonce": 1509295246,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348459928,
+            "link": null,
+            "locked": false,
+            "text": "copy",
+            "rawText": "copy",
+            "fontSize": 16,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 14,
+            "containerId": null,
+            "originalText": "copy"
+        },
+        {
+            "id": "dtU_anql9N_4AmSGuRPKC",
+            "type": "arrow",
+            "x": 71.78572082519531,
+            "y": -154.88427352905273,
+            "width": 0,
+            "height": 24.09979248046875,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "round",
+            "seed": 1476798866,
+            "version": 76,
+            "versionNonce": 1408929554,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348567269,
+            "link": null,
+            "locked": false,
+            "points": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    24.09979248046875
+                ]
+            ],
+            "lastCommittedPoint": null,
+            "startBinding": null,
+            "endBinding": {
+                "elementId": "dRpxb4cveJGG7aF730Rnp",
+                "focus": -1.0590561584532245,
+                "gap": 14.201736450195312
+            },
+            "startArrowhead": null,
+            "endArrowhead": "arrow"
+        },
+        {
+            "id": "o0FgDLal",
+            "type": "text",
+            "x": 37.60780334472656,
+            "y": -177.65867233276367,
+            "width": 65,
+            "height": 23,
+            "angle": 0,
+            "strokeColor": "#000000",
+            "backgroundColor": "transparent",
+            "fillStyle": "hachure",
+            "strokeWidth": 1,
+            "strokeStyle": "solid",
+            "roughness": 1,
+            "opacity": 100,
+            "groupIds": [],
+            "strokeSharpness": "sharp",
+            "seed": 592155538,
+            "version": 46,
+            "versionNonce": 6357134,
+            "isDeleted": false,
+            "boundElements": null,
+            "updated": 1654348574809,
+            "link": null,
+            "locked": false,
+            "text": "开始归并",
+            "rawText": "开始归并",
+            "fontSize": 16,
+            "fontFamily": 1,
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "baseline": 17,
+            "containerId": null,
+            "originalText": "开始归并"
+        }
+    ],
+    "appState": {
+        "theme": "light",
+        "viewBackgroundColor": "#ffffff",
+        "currentItemStrokeColor": "#000000",
+        "currentItemBackgroundColor": "transparent",
+        "currentItemFillStyle": "hachure",
+        "currentItemStrokeWidth": 1,
+        "currentItemStrokeStyle": "solid",
+        "currentItemRoughness": 1,
+        "currentItemOpacity": 100,
+        "currentItemFontFamily": 1,
+        "currentItemFontSize": 16,
+        "currentItemTextAlign": "left",
+        "currentItemStrokeSharpness": "sharp",
+        "currentItemStartArrowhead": null,
+        "currentItemEndArrowhead": "arrow",
+        "currentItemLinearStrokeSharpness": "round",
+        "gridSize": null,
+        "colorPalette": {}
+    },
+    "files": {}
+}
+</code></pre>
+<p>%%</p>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: 2022 05 08 spring transactional overview" class="md-footer__link md-footer__link--prev" href="../2022-05-08-spring_transactional_overview/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              2022 05 08 spring transactional overview
+            </div>
+</div>
+</a>
+<a aria-label="Next: Note 1" class="md-footer__link md-footer__link--next" href="../../../Topic%201/Note%201/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Note 1
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>
