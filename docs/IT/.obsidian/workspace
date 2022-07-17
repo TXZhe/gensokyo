@@ -1,0 +1,113 @@
+{
+  "main": {
+    "id": "a703620cf4b98dfb",
+    "type": "split",
+    "children": [
+      {
+        "id": "5dc2b96e0fadd80e",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "01_Develop/02_Component/02_Spring/00_spring事务管理.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2379bac38edee266",
+    "type": "split",
+    "children": [
+      {
+        "id": "7155312397f2f49d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7ebdcc839cecc6be",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "6bbdc74969d8a273",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 318.51219177246094
+  },
+  "right": {
+    "id": "a4533e208646e4cf",
+    "type": "split",
+    "children": [
+      {
+        "id": "884d03d880e99a74",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "946b532cf2123df9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01_Develop/02_Component/02_Spring/00_spring事务管理.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4fbd64e57cefd690",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01_Develop/02_Component/02_Spring/00_spring事务管理.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "5dc2b96e0fadd80e",
+  "lastOpenFiles": [
+    "01_Develop/02_Component/02_Spring/00_spring事务管理.md",
+    "01_Develop/02_Component/02_Spring/00_spring事务管理.pdf",
+    "01_Develop/02_Component/02_Spring/99_misc/01_spring_transactional_proxy.png",
+    "01_Develop/02_Component/02_Spring/99_misc/The-JDBC-architecture.jpg",
+    "00_Algorithm/00_Algo/03_排序.md",
+    "01_Develop/02_Component/01_Flink.md",
+    "Excalidraw/tim-sort-merge-space-overhead.md",
+    "01_Develop/02_Component/00_Kafka/01_broker/01_索引模块.md",
+    "01_Develop/02_Component/00_Kafka/01_broker/00_日志模块.md",
+    "Excalidraw/Drawing 2022-05-24 22.50.45.excalidraw.md"
+  ]
+}
